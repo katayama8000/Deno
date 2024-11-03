@@ -3,7 +3,7 @@ use anyhow::Error;
 
 #[mockall::automock]
 #[async_trait::async_trait]
-pub trait CircleRepositoryInterface {
+pub trait CircleRepositoryInterface: Send + Sync {
     async fn find_all(&self) -> Result<Vec<Circle>, Error>;
     async fn find_by_id(&self, circle_id: &CircleId) -> Result<Circle, Error>;
     async fn create(&self, circle: &Circle) -> Result<(), Error>;
